@@ -1,3 +1,5 @@
+<%@page import="member.model.MemberInfo"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -7,6 +9,14 @@
 	String password=request.getParameter("password");
 	String userName=request.getParameter("userName");
 	String photoFile=request.getParameter("photoFile");
+	
+	MemberInfo info = new MemberInfo(userId, password, userName, photoFile);
+	
+	HashMap<String,MemberInfo> map = new HashMap<>();
+	map.put(userId, info);
+	
+	/* System.out.println(map); */
+	session.setAttribute("MapInfo", map);
 %>
 <!DOCTYPE html>
 <html>
