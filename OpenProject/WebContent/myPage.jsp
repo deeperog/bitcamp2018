@@ -3,9 +3,7 @@
 <%
 	String id = (String)request.getSession(false).getAttribute("userId");
 	String name = (String)request.getSession(false).getAttribute("userName");
-	<%-- ${MapInfo} --%>
 
-	<h1><%= session.getAttribute("MapInfo") %></h1>
 	if(id==null){
 		%>
 		<script>

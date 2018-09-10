@@ -1,7 +1,7 @@
 package member.model;
 
 public class MemberInfo {
-	public String userId;
+	private String userId;
 	private String password;
 	private String userName;
 	private String photoFile;

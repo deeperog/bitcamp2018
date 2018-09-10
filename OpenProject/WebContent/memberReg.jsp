@@ -12,11 +12,15 @@
 	
 	MemberInfo info = new MemberInfo(userId, password, userName, photoFile);
 	
-	HashMap<String,MemberInfo> map = new HashMap<>();
-	map.put(userId, info);
+	HashMap<String,MemberInfo> map = null;
+	if(application.getAttribute("MapInfo")!=null){
+		map=(HashMap)application.getAttribute("MapInfo");
+	}else{
+		map = new HashMap<>();
+	}
 	
-	/* System.out.println(map); */
-	session.setAttribute("MapInfo", map);
+	map.put(userId, info);		
+	application.setAttribute("MapInfo", map);
 %>
 <!DOCTYPE html>
 <html>
