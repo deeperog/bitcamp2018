@@ -9,6 +9,25 @@
 	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("userId");
 	String pw = request.getParameter("password");
+	String check = request.getParameter("check");
+	
+	if(check != null){
+		Cookie c = new Cookie("id", id);
+		response.addCookie(c);
+		System.out.println(c.getValue());
+	} else {
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null && cookies.length > 0){
+			for(int i = 0; i<cookies.length; i++){
+				if(cookies[i].getName().equals("id")){
+					Cookie c = new Cookie("id", "");
+					c.setMaxAge(0);
+					response.addCookie(c);
+				}
+			}
+		}
+	}
+			
 	if (application.getAttribute("MapInfo") != null) {
 		HashMap map = (HashMap) application.getAttribute("MapInfo");
 
@@ -22,7 +41,6 @@
 				request.getSession(false).setAttribute("userName", pw);
 				response.sendRedirect("myPage.jsp");
 			}
-
 		}
 	}
 %>
