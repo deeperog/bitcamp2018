@@ -1,33 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@page import="member.model.MemberInfo"%>
+<%@ page import="member.model.MemberInfo"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+
+<%-- <c:forEach var="map" items="${applicationScope.map}">
+	<c:if test="${param.id == map.id && param.password == map.password}" var="test">
+		<c:redirect url=“myPage.jsp” />
+	</c:if>
+</c:forEach> --%>
 
 <%
 	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("userId");
 	String pw = request.getParameter("password");
 	String check = request.getParameter("check");
-	
-	if(check != null){
-		Cookie c = new Cookie("id", id);
-		response.addCookie(c);
-		System.out.println(c.getValue());
-	} else {
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null && cookies.length > 0){
-			for(int i = 0; i<cookies.length; i++){
-				if(cookies[i].getName().equals("id")){
-					Cookie c = new Cookie("id", "");
-					c.setMaxAge(0);
-					response.addCookie(c);
-				}
-			}
-		}
-	}
-			
+
 	if (application.getAttribute("MapInfo") != null) {
 		HashMap map = (HashMap) application.getAttribute("MapInfo");
 
@@ -38,8 +28,25 @@
 
 			if (id != "" && pw != "" && id.equals(test.getUserId()) && pw.equals(test.getPassword())) {
 				request.getSession(false).setAttribute("userId", id);
-				request.getSession(false).setAttribute("userName", pw);
+				request.getSession(false).setAttribute("userName", test.getUserName());
 				response.sendRedirect("myPage.jsp");
+			}
+		}
+	}
+
+	if (check != null) {
+		Cookie c = new Cookie("id", id);
+		response.addCookie(c);
+		System.out.println(c.getValue());
+	} else {
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null && cookies.length > 0) {
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("id")) {
+					Cookie c = new Cookie("id", "");
+					c.setMaxAge(0);
+					response.addCookie(c);
+				}
 			}
 		}
 	}

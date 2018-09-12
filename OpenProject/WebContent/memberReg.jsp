@@ -1,14 +1,30 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="member.model.MemberInfo"%>
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
+%>
 
+<jsp:useBean id="member" class="member.model.MemberInfo"/>  <!-- 객체 선언 -->
+<jsp:setProperty property="*" name="member"  />	<!-- member객체에 모든 요소(*) 넣음 -->
+<jsp:useBean id="map" class="java.util.HashMap" scope="application"/>
+
+<% 
+	map.put(member.getUserId(), member); 
+	/* application.setAttribute("MapInfo", map); */
+	System.out.println(map);
+%>
+
+
+
+<%-- <%
 	String userId=request.getParameter("userId");
 	String password=request.getParameter("password");
 	String userName=request.getParameter("userName");
 	String photoFile=request.getParameter("photoFile");
+	
+	
 	
 	MemberInfo info = new MemberInfo(userId, password, userName, photoFile);
 	
@@ -21,7 +37,10 @@
 	
 	map.put(userId, info);		
 	application.setAttribute("MapInfo", map);
-%>
+%> --%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,15 +67,15 @@ h2, td {
 		<table>
 			<tr>
 				<td>아이디(이메일)</td>
-				<td><%=userId %></td>
+				<td>${member.userId}</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><%=password %></td>
+				<td>${member.password}</td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><%=userName %></td>
+				<td>${member.userName}</td>
 			</tr>
 			<tr>
 				<td>사진</td>

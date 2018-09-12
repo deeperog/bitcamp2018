@@ -1,15 +1,13 @@
-<%if (application.getAttribute("MapInfo") != null) { %>
+<%-- <%if (application.getAttribute("map") != null) { %> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="member.model.MemberInfo"%>
+<%@ page import="member.model.MemberInfo"%>
 <%@ page import="java.util.*"%>
 <%@ include file="common/header.jsp" %>
-<%
-	request.setCharacterEncoding("utf-8");
-	HashMap map = (HashMap) application.getAttribute("MapInfo");
-	String temp = "";
-	
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% request.setCharacterEncoding("utf-8"); %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +23,45 @@
 	}
 </style>
 </head>
+
 <body>
+
+<h2>회원 리스트</h2>
+
+<c:forEach items="${applicationScope.map}" var="map"> 
+<div id="contents">
+
+		<hr>
+		<table>
+		
+			<tr>
+				<td>아이디(이메일)</td>
+				<td>${map.value.userId}</td>
+			</tr>
+			
+			<tr>
+				<td>이름</td>
+				<td>${map.value.userName}</td>
+			</tr>
+			<tr>
+				<td>사진</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+			
+
+	</c:forEach>
+</body>
+
+
+<%-- <body>
+<% if (application.getAttribute("map") != null) { %>
 <h2>회원 리스트</h2>
 	<%
+	
+		HashMap map = (HashMap) application.getAttribute("map");
+		String temp = "";
 		// [*]HashMap은 반복문을 못 돌려서 Iterator를 통해 반복문을 돌리는 것이 아닐까 생각해본다.
 		Iterator<String> it = map.keySet().iterator();
 
@@ -56,10 +90,11 @@
 	</div>
 			<%
 		}
-	%>
+	}else{%>
+	<br>
 	
-</body>
+	<h2>회원정보가 없습니다ㅠㅠ</h2>
+	<%} %>
+	
+</body> --%>
 </html>
-<%}else{%>
-<h1>회원정보가 없습니다ㅠㅠ</h1>
-<%} %>

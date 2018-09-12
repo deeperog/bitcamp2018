@@ -7,6 +7,13 @@ public class MemberInfo {
 	private String photoFile;
 	
 	
+	
+	public MemberInfo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public MemberInfo(String userId, String password, String userName, String photoFile) {
 		super();
 		this.userId = userId;

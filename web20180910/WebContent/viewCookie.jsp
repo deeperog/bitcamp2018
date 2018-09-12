@@ -23,7 +23,11 @@
 		%>
 		저장된 쿠키 정보가 없습니다.
 		<% } %>
+		
+		
+		//// ${cookie.id.value}
 	</h1>
+아이디 <input type="text" value="${cookie.id.value}" />
 	<a href="modifyCookie.jsp">쿠키 변경</a>
 	<a href="deleteCookie.jsp">쿠키 삭제</a>
 </body>
