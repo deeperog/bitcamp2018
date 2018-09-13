@@ -10,7 +10,7 @@
 <jsp:setProperty property="*" name="member"  />	<!-- member객체에 모든 요소(*) 넣음 -->
 <jsp:useBean id="map" class="java.util.HashMap" scope="application"/>
 
-<% 
+<%
 	map.put(member.getUserId(), member); 
 	/* application.setAttribute("MapInfo", map); */
 	System.out.println(map);

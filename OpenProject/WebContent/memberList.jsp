@@ -1,4 +1,4 @@
-<%-- <%if (application.getAttribute("map") != null) { %> --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="member.model.MemberInfo"%>
@@ -21,6 +21,15 @@
 	h2 {
 		padding : 25px 0 0 25px;
 	}
+	#a{
+		text-decoration: none;
+		color: red;
+		padding : 10px;
+	}
+	
+	div{
+		text-align: center;
+	}
 </style>
 </head>
 
@@ -32,7 +41,7 @@
 <div id="contents">
 
 		<hr>
-		<table>
+		<table border="1">
 		
 			<tr>
 				<td>아이디(이메일)</td>
@@ -46,6 +55,9 @@
 			<tr>
 				<td>사진</td>
 				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2"><div><a id="a" href="update.jsp?userId=${map.value.userId}">수정하기</a><a id="a" href="delete.jsp?userId=${map.value.userId}">삭제하기</a></div></td>				
 			</tr>
 		</table>
 	</div>
