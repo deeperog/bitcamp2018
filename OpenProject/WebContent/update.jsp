@@ -15,21 +15,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:useBean id="map" class="java.util.HashMap" scope="application"/>
+<jsp:useBean id="member" class="member.model.MemberInfo"/>
+
 	<%
-		String userId = request.getParameter("userId");
-
-		HashMap map = (HashMap) application.getAttribute("map");
-		String temp = "";
-		// [*]HashMap은 반복문을 못 돌려서 Iterator를 통해 반복문을 돌리는 것이 아닐까 생각해본다.
-		Iterator<String> it = map.keySet().iterator();
-
-		while (it.hasNext()) {
-			MemberInfo test = (MemberInfo) map.get(it.next());
-			if (test.getUserId().equals(userId)) {
-				
-				
-			}
-		}
+		String userId = request.getParameter("beforeUserId");
+		String userName = request.getParameter("userName2");
+		String password = request.getParameter("password2");		
+		String photoFile = "";		
+		
+		MemberInfo info = new MemberInfo(userId, password, userName, photoFile);
+		
+		map.replace(userId, info);
+		response.sendRedirect("memberList.jsp");
 	%>
 
 	

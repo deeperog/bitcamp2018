@@ -14,9 +14,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-		String userId = request.getParameter("userId");
+<jsp:useBean id="map" class="java.util.HashMap" scope="application"/>
 
+<%
+String userId = request.getParameter("userId");
+map.remove(userId);
+response.sendRedirect("memberList.jsp");
+%>
+
+<%-- <%
+		String userId = request.getParameter("userId");
+		
 		HashMap map = (HashMap) application.getAttribute("map");
 		
 		Iterator<String> it = map.keySet().iterator();
@@ -33,6 +41,6 @@
 		application.setAttribute("MapInfo", map);
 		response.sendRedirect("memberList.jsp");
 
-	%>
+	%> --%>
 </body>
 </html>

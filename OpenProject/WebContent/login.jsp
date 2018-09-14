@@ -18,14 +18,16 @@
 	String pw = request.getParameter("password");
 	String check = request.getParameter("check");
 
-	if (application.getAttribute("MapInfo") != null) {
-		HashMap map = (HashMap) application.getAttribute("MapInfo");
+	
+	
+	if (application.getAttribute("map") != null) {
+		HashMap map = (HashMap) application.getAttribute("map");
 
 		Iterator<String> it = map.keySet().iterator();
 
 		while (it.hasNext()) {
 			MemberInfo test = (MemberInfo) map.get(it.next());
-
+			
 			if (id != "" && pw != "" && id.equals(test.getUserId()) && pw.equals(test.getPassword())) {
 				request.getSession(false).setAttribute("userId", id);
 				request.getSession(false).setAttribute("userName", test.getUserName());

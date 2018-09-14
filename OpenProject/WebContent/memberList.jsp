@@ -25,11 +25,11 @@ h2 {
 	padding: 25px 0 0 25px;
 }
 
-#myBtn {
+/* button {
 	text-decoration: none;
 	color: red;
 	padding: 10px;
-}
+} */
 
 div {
 	text-align: center;
@@ -60,7 +60,7 @@ body {
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 80%;
+	width: 400px;
 }
 
 /* The Close Button */
@@ -87,7 +87,7 @@ body {
 		<div id="contents">
 
 			<hr>
-			<table border="1">
+			<table>
 
 				<tr>
 					<td>아이디(이메일)</td>
@@ -104,8 +104,13 @@ body {
 				</tr>
 				<tr>
 					<td colspan="2"><div>
-							<button id="myBtn" onclick="abc(${map.value.userId})">수정하기</button>
-							<a id="myBtn" href="delete.jsp?userId=${map.value.userId}">삭제하기</a>
+					
+						<button onclick="update('${map.value.userId}', '${map.value.userName}', '${map.value.password}')">수정하기</button>			
+						<button id="myBtn" onclick="location.href='delete.jsp?userId=${map.value.userId}'">삭제</button>
+						
+
+
+						
 						</div></td>
 				</tr>
 			</table>
@@ -116,10 +121,10 @@ body {
 
 
 
-	
+
 
 	<!-- Trigger/Open The Modal -->
-	
+
 
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
@@ -129,48 +134,72 @@ body {
 			<span class="close">&times;</span>
 			<div id="contents">
 
-			<hr>
-			<table border="1">
+				<hr>
+				<form action="update.jsp" method="post">
+				<table>
 
-				<tr>
-					<td>아이디(이메일)</td>
-					<td>
+					<tr>
+						<td>아이디(이메일)</td>
+						<td><p id="userId2"/></p></td>
+					</tr>
+
+					<tr>
+						<td>이름</td>
+						<td><input type="text" id="userName2" name="userName2"/></td>
+					</tr>
+					<tr>
+						<td>패스워드</td>
+						<td><input type="password" id="password2" name="password2"/></td>
+					</tr>
+					<tr>
+						<td>사진</td>
+						<td><input type="file" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="수정하기"/></td>						
+					</tr>
+					<tr>
 					
-					</td>
-				</tr>
+					<td><input type="hidden" id="beforeUserId" name="beforeUserId" /></td>
+					<td><input type="hidden" id="beforeUserName"/></td>
+					<td><input type="hidden" id="beforePassword" /></td>
+					</tr>
+					
+					
 
-				<tr>
-					<td>이름</td>
-					<td>${map.value.userName}</td>
-				</tr>
-				<tr>
-					<td>사진</td>
-					<td></td>
-				</tr>
-				
-			</table>
-		</div>
-			
+				</table>
+				</form>
+			</div>
+
 		</div>
 
 	</div>
 
 	<script>
-	var update
+	
 		// Get the modal
+		
+		var userId2 = document.getElementById("userId2");
+		var beforeUserId = document.getElementById("beforeUserId");
+		var userName2 = document.getElementById("userName2")
 		var modal = document.getElementById('myModal');
 
 		// Get the button that opens the modal
-		/* var btn = document.getElementById("myBtn"); */
+		var btn = document.getElementById("myBtn");
 
 		// Get the <span> element that closes the modal
 		var span = document.getElementsByClassName("close")[0];
 
 		// When the user clicks the button, open the modal 
-		function abc(userId) {
-			modal.style.display = "block";
-			String qwe = userId;
-			System
+		function update(userId, userName, password) {
+    		modal.style.display = "block";
+    		userId2.innerHTML = userId;
+    		beforeUserId.value = userId;
+    		
+    		userName2.value = userName;
+    		password2.value = password
+    		beforeUserName.value = userName;
+    		beforePassword.value = password;
 		}
 
 		// When the user clicks on <span> (x), close the modal
