@@ -75,7 +75,7 @@ h2, td {
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td>${member.userName}</td>
+				<td>5,${member.userName}</td>
 			</tr>
 			<tr>
 				<td>사진</td>
