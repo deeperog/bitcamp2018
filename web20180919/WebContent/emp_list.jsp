@@ -5,6 +5,7 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,20 +31,22 @@
 
 		<%
 			// 1. 데이터베이스 드라이버 로드
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			/* Class.forName("oracle.jdbc.driver.OracleDriver"); */
 
 			Connection conn = null;
 			Statement stmt = null;
 			ResultSet rs = null;
 
-			String url = "jdbc:oracle:thin:@localhost:1522:orcl";
+			/* String url = "jdbc:oracle:thin:@localhost:1522:orcl";
 			String user = "scott";
-			String pw = "1111";
+			String pw = "1111"; */
+			
+			String jdbcUrl = "jdbc:apache:commons:dbcp:open";
 
 			try {
 
 				// 2. 컨넥션 객체		
-				conn = DriverManager.getConnection(url, user, pw);
+				conn = DriverManager.getConnection(jdbcUrl);
 
 				// 3. Statement 객체 생성
 				stmt = conn.createStatement();

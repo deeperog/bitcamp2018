@@ -66,11 +66,12 @@ h2, td {
 					<td><input type="password" name="password"></td>
 				</tr>
 				<tr>
+				
 					<td><input type="submit" value="로그인"></td>
 					<%-- <td><input type="checkbox" id="check" name="check" <%= check %>/><label for="check">아이디 기억하기</label></td> --%>
 
 					<td><input type="checkbox" id="check" name="check"
-						<c:if test="${cookie.id.value!=null }">
+						<c:if test="${cookie.id.value !=null }">
 					 checked
 					</c:if>><label for="check">아이디 기억하기</label></td>
 				</tr>

@@ -12,7 +12,7 @@
 	int resultCnt = 0;
 
 	//1. 데이터베이스 드라이버 로드
-	Class.forName("oracle.jdbc.driver.OracleDriver");
+	/* Class.forName("oracle.jdbc.driver.OracleDriver"); */
 
 	Connection conn = null;
 	PreparedStatement pstmt = null;

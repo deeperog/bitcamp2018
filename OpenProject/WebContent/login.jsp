@@ -1,57 +1,53 @@
+<%@page import="member.model.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="member.model.MemberInfo"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
-<%-- <c:forEach var="map" items="${applicationScope.map}">
-	<c:if test="${param.id == map.id && param.password == map.password}" var="test">
-		<c:redirect url=“myPage.jsp” />
-	</c:if>
-</c:forEach> --%>
-
 <%
 	request.setCharacterEncoding("utf-8");
-	String id = request.getParameter("userId");
-	String pw = request.getParameter("password");
+%>
+<jsp:useBean id="member" class="member.model.MemberInfo" />
+<!-- 객체 선언 -->
+<jsp:setProperty property="*" name="member" />
+<!-- member객체에 모든 요소(*) 넣음 -->
+
+
+<%
+	MemberDAO dao = MemberDAO.getInstance();
+	int login = dao.login(member);
+
 	String check = request.getParameter("check");
 
-	
-	
-	if (application.getAttribute("map") != null) {
-		HashMap map = (HashMap) application.getAttribute("map");
-
-		Iterator<String> it = map.keySet().iterator();
-
-		while (it.hasNext()) {
-			MemberInfo test = (MemberInfo) map.get(it.next());
-			
-			if (id != "" && pw != "" && id.equals(test.getUserId()) && pw.equals(test.getPassword())) {
-				request.getSession(false).setAttribute("userId", id);
-				request.getSession(false).setAttribute("userName", test.getUserName());
-				response.sendRedirect("myPage.jsp");
-			}
-		}
-	}
-
 	if (check != null) {
-		Cookie c = new Cookie("id", id);
+		Cookie c = new Cookie("id", member.getUserId());
 		response.addCookie(c);
 		System.out.println(c.getValue());
 	} else {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null && cookies.length > 0) {
-			for (int i = 0; i < cookies.length; i++) {
-				if (cookies[i].getName().equals("id")) {
-					Cookie c = new Cookie("id", "");
-					c.setMaxAge(0);
-					response.addCookie(c);
-				}
-			}
+			Cookie c = new Cookie("id", "");
+			c.setMaxAge(0);
+			response.addCookie(c);
 		}
 	}
+
+	/* if (application.getAttribute("map") != null) {
+		HashMap map = (HashMap) application.getAttribute("map");
+	
+		Iterator<String> it = map.keySet().iterator();
+	
+		while (it.hasNext()) {
+			MemberInfo test = (MemberInfo) map.get(it.next());
+	
+			if (id != "" && pw != "" && id.equals(test.getUserId()) && pw.equals(test.getPassword())) {
+				request.getSession(false).setAttribute("userId", id);
+				request.getSession(false).setAttribute("userName", test.getUserName());
+	
+				response.sendRedirect("myPage.jsp");
+			}
+		}
+	} */
 %>
 <!DOCTYPE html>
 <html>

@@ -1,3 +1,4 @@
+<%@page import="member.model.MemberDAO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="member.model.MemberInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,14 +8,21 @@
 %>
 
 <jsp:useBean id="member" class="member.model.MemberInfo"/>  <!-- 객체 선언 -->
-<jsp:setProperty property="*" name="member"  />	<!-- member객체에 모든 요소(*) 넣음 -->
-<jsp:useBean id="map" class="java.util.HashMap" scope="application"/>
+<jsp:setProperty property="*" name="member"/>	<!-- member객체에 모든 요소(*) 넣음 -->
+<%-- <jsp:useBean id="map" class="java.util.HashMap" scope="application"/> --%>
 
 <%
+MemberDAO dao = MemberDAO.getInstance();
+dao.insertMember(member);
+%>
+
+
+
+<%-- <%
 	map.put(member.getUserId(), member); 
 	/* application.setAttribute("MapInfo", map); */
 	System.out.println(map);
-%>
+%> --%>
 
 
 
@@ -75,29 +83,13 @@ h2, td {
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td>5,${member.userName}</td>
+				<td>${member.userName}</td>
 			</tr>
 			<tr>
 				<td>사진</td>
 				<td></td>
 			</tr>
 		</table>
-
-
-
-
-
 	</div>
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
