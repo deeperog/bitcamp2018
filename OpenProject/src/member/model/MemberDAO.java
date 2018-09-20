@@ -19,6 +19,8 @@ public class MemberDAO {
 	Connection conn = null;
 	Statement stmt = null;
 	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	int cnt = 0;
 
 	private static MemberDAO instance;
 
@@ -39,7 +41,6 @@ public class MemberDAO {
 		try {
 			// 2. 컨넥션 객체
 			conn = DriverManager.getConnection(jdbcUrl);
-
 			// 자동 커밋을 false로 한다.
 			conn.setAutoCommit(false);
 
@@ -47,6 +48,8 @@ public class MemberDAO {
 			StringBuffer sql = new StringBuffer();
 			sql.append("insert into MEMBER (userid, password, username, userphoto) values");
 			sql.append("(?, ?, ?, ?)");
+			
+			
 
 			/*
 			 * StringBuffer에 담긴 값을 얻으려면 toString()메서드를 이용해야 한다.
@@ -59,7 +62,8 @@ public class MemberDAO {
 			pstmt.setString(4, member.getPhotoFile());
 
 			// 쿼리 실행
-			pstmt.executeUpdate();
+			cnt = pstmt.executeUpdate();
+			System.out.println(cnt);
 			// 완료시 커밋
 			conn.commit();
 
@@ -92,17 +96,20 @@ public class MemberDAO {
 		try {
 			conn = DriverManager.getConnection(jdbcUrl);
 			stmt = conn.createStatement();
-			StringBuffer sql = new StringBuffer();
-			sql.append("select * from member where userid =" + member.getUserId() + " and password ="
-					+ member.getPassword());
+			String sql = "select * from member where userid ='" + member.getUserId()+ "'";
 
-			ResultSet rs = stmt.executeQuery(sql.toString());
-
+			rs = stmt.executeQuery(sql);
+			
 			if (rs.next()) {
-				if (member.getUserId().equals(rs.getString(1)) && member.getPassword().equals(rs.getString(2)))
+				System.out.println(member.getUserId().equals(rs.getString(1)));
+				System.out.println(member.getPassword().equals(rs.getString(2)));
+				
+				if (member.getUserId().equals(rs.getString(1)) && member.getPassword().equals(rs.getString(2))) {
 					return 1; // 로그인 성공
-				else
+				}
+				else {
 					return 0; // 로그인 실패
+				}
 			}
 
 		} catch (SQLException e) {
@@ -110,7 +117,15 @@ public class MemberDAO {
 			e.printStackTrace();
 
 		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
 
+				} catch (SQLException se) {
+					
+				}
+			}
+			
 			if (stmt != null) {
 				try {
 					stmt.close();

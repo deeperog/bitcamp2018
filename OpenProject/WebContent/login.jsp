@@ -16,6 +16,13 @@
 <%
 	MemberDAO dao = MemberDAO.getInstance();
 	int login = dao.login(member);
+	System.out.println(login);
+	if(login == 1){
+		request.getSession(false).setAttribute("userId", member.getUserId());
+		request.getSession(false).setAttribute("userName", member.getUserName());
+
+		response.sendRedirect("myPage.jsp");
+	}
 
 	String check = request.getParameter("check");
 
