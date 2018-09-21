@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-</head>
+</head> 
 <body>
 <jsp:useBean id="map" class="java.util.HashMap" scope="application"/>
 <jsp:useBean id="member" class="member.model.MemberInfo"/>

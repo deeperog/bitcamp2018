@@ -11,7 +11,7 @@ public class MemberInfo {
 	public MemberInfo() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
+	} 
 
 
 	public MemberInfo(String userId, String password, String userName, String photoFile) {

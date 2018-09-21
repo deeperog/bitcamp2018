@@ -10,10 +10,10 @@ import java.sql.Statement;
 import javax.naming.NamingException;
 
 /* Data Access Object
- * Å×ÀÌºí ´ç ÇÑ°³ÀÇ DAO¸¦ ÀÛ¼ºÇÑ´Ù.
+ * í…Œì´ë¸” ë‹¹ í•œê°œì˜ DAOë¥¼ ì‘ì„±í•œë‹¤.
  * 
- * JSP_MEMBER Å×ÀÌºí°ú ¿¬°üµÈ DAO·Î
- * È¸¿ø µ¥ÀÌÅÍ¸¦ Ã³¸®ÇÏ´Â Å¬·¡½ºÀÌ´Ù.
+ * JSP_MEMBER í…Œì´ë¸”ê³¼ ì—°ê´€ëœ DAOë¡œ
+ * íšŒì› ë°ì´í„°ë¥¼ ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤ì´ë‹¤.
  */
 public class MemberDAO {
 	Connection conn = null;
@@ -24,7 +24,7 @@ public class MemberDAO {
 
 	private static MemberDAO instance;
 
-	// ½Ì±ÛÅæ ÆĞÅÏ
+	// ì‹±ê¸€í†¤ íŒ¨í„´
 	private MemberDAO() {
 	}
 
@@ -39,12 +39,12 @@ public class MemberDAO {
 		String jdbcUrl = "jdbc:apache:commons:dbcp:open";
 
 		try {
-			// 2. ÄÁ³Ø¼Ç °´Ã¼
+			// 2. ì»¨ë„¥ì…˜ ê°ì²´
 			conn = DriverManager.getConnection(jdbcUrl);
-			// ÀÚµ¿ Ä¿¹ÔÀ» false·Î ÇÑ´Ù.
+			// ìë™ ì»¤ë°‹ì„ falseë¡œ í•œë‹¤.
 			conn.setAutoCommit(false);
 
-			// Äõ¸® »ı¼ºÇÑ´Ù.
+			// ì¿¼ë¦¬ ìƒì„±í•œë‹¤.
 			StringBuffer sql = new StringBuffer();
 			sql.append("insert into MEMBER (userid, password, username, userphoto) values");
 			sql.append("(?, ?, ?, ?)");
@@ -52,7 +52,7 @@ public class MemberDAO {
 			
 
 			/*
-			 * StringBuffer¿¡ ´ã±ä °ªÀ» ¾òÀ¸·Á¸é toString()¸Ş¼­µå¸¦ ÀÌ¿ëÇØ¾ß ÇÑ´Ù.
+			 * StringBufferì— ë‹´ê¸´ ê°’ì„ ì–»ìœ¼ë ¤ë©´ toString()ë©”ì„œë“œë¥¼ ì´ìš©í•´ì•¼ í•œë‹¤.
 			 */
 			pstmt = conn.prepareStatement(sql.toString());
 
@@ -61,19 +61,19 @@ public class MemberDAO {
 			pstmt.setString(3, member.getUserName());
 			pstmt.setString(4, member.getPhotoFile());
 
-			// Äõ¸® ½ÇÇà
+			// ì¿¼ë¦¬ ì‹¤í–‰
 			cnt = pstmt.executeUpdate();
 			System.out.println(cnt);
-			// ¿Ï·á½Ã Ä¿¹Ô
+			// ì™„ë£Œì‹œ ì»¤ë°‹
 			conn.commit();
 
 		} catch (SQLException sqle) {
-			// ¿À·ù½Ã ·Ñ¹é
+			// ì˜¤ë¥˜ì‹œ ë¡¤ë°±
 			conn.rollback();
 
 			throw new RuntimeException(sqle.getMessage());
 		} finally {
-			// Connection, PreparedStatement¸¦ ´İ´Â´Ù.
+			// Connection, PreparedStatementë¥¼ ë‹«ëŠ”ë‹¤. 
 			try {
 				if (pstmt != null) {
 					pstmt.close();
@@ -105,10 +105,10 @@ public class MemberDAO {
 				System.out.println(member.getPassword().equals(rs.getString(2)));
 				
 				if (member.getUserId().equals(rs.getString(1)) && member.getPassword().equals(rs.getString(2))) {
-					return 1; // ·Î±×ÀÎ ¼º°ø
+					return 1; // ë¡œê·¸ì¸ ì„±ê³µ
 				}
 				else {
-					return 0; // ·Î±×ÀÎ ½ÇÆĞ
+					return 0; // ë¡œê·¸ì¸ ì‹¤íŒ¨
 				}
 			}
 

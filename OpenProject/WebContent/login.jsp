@@ -4,7 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="member.model.MemberInfo"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
+<% 
 	request.setCharacterEncoding("utf-8");
 %>
 <jsp:useBean id="member" class="member.model.MemberInfo" />

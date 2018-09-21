@@ -14,7 +14,7 @@
 	}
 </style>
 </head>
-<body>
+<body> 
 
 <div id="contents">
 <h2>회원가입</h2>

@@ -12,7 +12,7 @@
 		</script>
 		
 		
-		<%
+		<% 
 	} else {
 %>
 <!DOCTYPE html>

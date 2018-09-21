@@ -14,7 +14,7 @@
 <%
 MemberDAO dao = MemberDAO.getInstance();
 dao.insertMember(member);
-%>
+%> 
 
 
 

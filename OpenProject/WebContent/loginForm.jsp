@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <%
 	Cookie[] cookies = request.getCookies();
-	String check = "";
+	String check = ""; 
 %> --%>
 <!DOCTYPE html>
 <html>
