@@ -14,7 +14,7 @@ public class JDBCTest {
 			PreparedStatement pstmt = conn.prepareStatement(sql1);
 			
 			pstmt.setInt(1, 1111);
-			pstmt.setString(2, "JOSH");
+			pstmt.setString(2, "AJOSH");
 			pstmt.setString(3, "YOUTUBER");
 			pstmt.setString(4, "1234");
 			pstmt.setString(5, "18/09/19");
