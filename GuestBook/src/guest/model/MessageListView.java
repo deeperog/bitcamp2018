@@ -3,7 +3,6 @@ package guest.model;
 import java.util.List;
 
 public class MessageListView {
-
 	private int messageTotalCount;
 	private int currentPageNumber;
 	private List<Message> messageList;
@@ -21,10 +20,10 @@ public class MessageListView {
 		this.firstRow = startRow;
 		this.endRow = endRow;
 		calculatePageTotalCount();
+
 	}
 
 	private void calculatePageTotalCount() {
-		// TODO Auto-generated method stub
 		if (messageTotalCount == 0) {
 			pageTotalCount = 0;
 		} else {
@@ -33,15 +32,39 @@ public class MessageListView {
 				pageTotalCount++;
 			}
 		}
+
 	}
-	
-	public int getMessageTotalCount() { return messageTotalCount; }
-	public int getCurrentPageNumber() { return currentPageNumber; }
-	public List<Message> getMessageList() { return messageList; }
-	public int getPageTotalCount() { return pageTotalCount; }
-	public int getMessageCountPerPage() { return messageCountPerPage; }
-	public int getFirstRow() { return firstRow; }
-	public int getEndRow() { return endRow; }
-	public boolean isEmpty() { return messageTotalCount == 0; }
+
+	public int getMessageTotalCount() {
+		return messageTotalCount;
+	}
+
+	public int getCurrentPageNumber() {
+		return currentPageNumber;
+	}
+
+	public List<Message> getMessageList() {
+		return messageList;
+	}
+
+	public int getPageTotalCount() {
+		return pageTotalCount;
+	}
+
+	public int getMessageCountPerPage() {
+		return messageCountPerPage;
+	}
+
+	public int getFirstRow() {
+		return firstRow;
+	}
+
+	public int getEndRow() {
+		return endRow;
+	}
+
+	public boolean isEmpty() {
+		return messageTotalCount == 0;
+	}
 
 }

@@ -12,20 +12,28 @@ import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
 
 public class GetMessageListService {
+	
+	MessageDao messageDao = MessageDao.getInstance();
+
 	private static GetMessageListService instance = new GetMessageListService();
 
 	public static GetMessageListService getInstance() {
 		return instance;
 	}
 
+	private GetMessageListService() {
+	}
+
+	// 한 페이지에 보여줄 메시지의 수
 	private static final int MESSAGE_COUNT_PER_PAGE = 3;
 
 	public MessageListView getMessageList(int pageNumber) throws ServiceException {
 		Connection conn = null;
 		int currentPageNumber = pageNumber;
+
 		try {
 			conn = ConnectionProvider.getConnection();
-			MessageDao messageDao = MessageDao.getInstance();
+			
 			// 전체 메시지 구하기
 			int messageTotalCount = messageDao.selectCount(conn);
 			List<Message> messageList = null;
@@ -46,6 +54,7 @@ public class GetMessageListService {
 		} finally {
 			JdbcUtil.close(conn);
 		}
+
 	}
 
 }
