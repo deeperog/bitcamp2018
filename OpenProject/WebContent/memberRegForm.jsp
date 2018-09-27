@@ -39,7 +39,7 @@
       <td><input type="file" name="photoFile"></td>
    </tr>
    <tr>
-      <td colspan="2"><input type="submit" name="photoFile"></td>
+      <td colspan="2"><input type="submit"></td>
    </tr>
 </table>
 </form>

@@ -9,6 +9,8 @@ import java.sql.Statement;
 
 import javax.naming.NamingException;
 
+import jdbc.JdbcUtil;
+
 /* Data Access Object
  * 테이블 당 한개의 DAO를 작성한다.
  * 
@@ -63,29 +65,12 @@ public class MemberDAO {
 
 			// 쿼리 실행
 			cnt = pstmt.executeUpdate();
-			System.out.println(cnt);
+			
 			// 완료시 커밋
 			conn.commit();
 
-		} catch (SQLException sqle) {
-			// 오류시 롤백
-			conn.rollback();
-
-			throw new RuntimeException(sqle.getMessage());
-		} finally {
-			// Connection, PreparedStatement를 닫는다. 
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-					pstmt = null;
-				}
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Exception e) {
-				throw new RuntimeException(e.getMessage());
-			}
+		} finally {			
+			JdbcUtil.close(pstmt);
 		} // end try~catch
 	} // end insertMember()
 
@@ -117,30 +102,8 @@ public class MemberDAO {
 			e.printStackTrace();
 
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-
-				} catch (SQLException se) {
-					
-				}
-			}
-			
-			if (stmt != null) {
-				try {
-					stmt.close();
-
-				} catch (SQLException se) {
-					
-				}
-			}
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException se) {
-
-				}
-			}
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
 		}
 		return -1;
 	}

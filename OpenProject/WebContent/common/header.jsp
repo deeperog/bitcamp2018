@@ -23,13 +23,13 @@
 
 	<c:choose>
 		<c:when test="${sessionScope.userId == null}">
-			<li><a href="loginForm.jsp">로그인</a></li>
+			<li><a href="<%= request.getContextPath() %>/loginForm.jsp">로그인</a></li>
 		</c:when>
 		<c:otherwise>
-			<li><a href="logout.jsp">로그아웃</a></li>
+			<li><a href="<%= request.getContextPath() %>/logout.jsp">로그아웃</a></li>
 		</c:otherwise>
 	</c:choose>	
 	
-	<li><a href="myPage.jsp">마이페이지</a></li>
-	<li><a href="memberList.jsp">회원 리스트</a></li>
+	<li><a href="<%= request.getContextPath() %>/mypage/myPage.jsp">마이페이지</a></li>
+	<li><a href="<%= request.getContextPath() %>/memberList.jsp">회원 리스트</a></li>
 </ul>

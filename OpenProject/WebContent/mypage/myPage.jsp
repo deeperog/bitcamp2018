@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
+<jsp:useBean id="member" class="member.model.MemberInfo"/>
+<%-- <%
+	
 	String id = (String)request.getSession(false).getAttribute("userId");
 	String name = (String)request.getSession(false).getAttribute("userName");
+%>
 
-	if(id==null){
+<%if(id==null){
 		%>
 		<script>
 			alert('로그인 후 사용가능한 서비스 입니다.');
@@ -14,7 +17,7 @@
 		
 		<% 
 	} else {
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +28,8 @@
 h2, td {
 	padding: 10px;
 }
-#memberPhoto{
+
+#memberPhoto {
 	background-image: url('images/noimage.png');
 	background-size: 100%;
 	width: 150px;
@@ -34,18 +38,19 @@ h2, td {
 	border-radius: 75px;
 	margin: 20px 0;
 }
-
 </style>
 </head>
 <body>
 
-	<%@ include file="common/header.jsp"%>
+<%@ include file="../common/header.jsp"%>
 
 
+	<h1><%=(String) request.getSession(false).getAttribute("userId")%></h1>
+	<h1><%=member.getUserId()%></h1>
 	<div id="contents">
 
 		<h2>회원 정보</h2>
-		
+
 		<div id="memberPhoto"></div>
 
 		<hr>
@@ -53,20 +58,15 @@ h2, td {
 		<table>
 			<tr>
 				<td>아이디(이메일)</td>
-				<td><%= id %></td>
+				<td><%=member.getUserId()%></td>
 			</tr>
-			
 			<tr>
 				<td>이름</td>
-				<td><%= name %></td>
-			</tr>
-			<tr>
-				<td>사진</td>
-				<td></td>
+				<td><%=member.getUserName()%></td>
 			</tr>
 		</table>
 	</div>
 
 </body>
 </html>
-<%}%>
+<%-- <%}%> --%>
