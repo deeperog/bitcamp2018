@@ -20,7 +20,7 @@
 <h2>회원가입</h2>
 <hr>
 
-<form action="memberReg.jsp" method="post">
+<form action="memberReg2.jsp" method="post" enctype="multipart/form-data">
 <table>
    <tr>
       <td>아이디(이메일)</td>

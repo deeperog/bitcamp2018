@@ -7,7 +7,7 @@
 <% 
 	request.setCharacterEncoding("utf-8");
 %>
-<jsp:useBean id="member" class="member.model.MemberInfo"/>
+<jsp:useBean id="member" class="member.model.MemberInfo" />
 <!-- 객체 선언 -->
 <jsp:setProperty property="*" name="member" />
 <!-- member객체에 모든 요소(*) 넣음 -->

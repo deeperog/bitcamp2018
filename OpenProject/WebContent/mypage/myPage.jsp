@@ -23,7 +23,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/default.css">
 <style>
 h2, td {
 	padding: 10px;
@@ -45,8 +45,7 @@ h2, td {
 <%@ include file="../common/header.jsp"%>
 
 
-	<h1><%=(String) request.getSession(false).getAttribute("userId")%></h1>
-	<h1><%=member.getUserId()%></h1>
+
 	<div id="contents">
 
 		<h2>회원 정보</h2>

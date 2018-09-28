@@ -4,23 +4,9 @@
 <h1 class="title">OpenProject</h1>
 
 <ul id="gnb">
-	<li><a href="index.jsp">메인</a></li>
-	<li><a href="memberRegForm.jsp">회원가입</a></li>
-<%-- 	<%
-		String lid = (String) request.getSession(false).getAttribute("userId");
-
-		if (lid == null) {
-	%>
-		<li><a href="loginForm.jsp">로그인</a></li>
-	<%
-		} else {
-	%>
-		<li><a href="logout.jsp">로그아웃</a></li>
-	<%
-		}
-	%> --%>
+	<li><a href="<%= request.getContextPath() %>/index.jsp">메인</a></li>
+	<li><a href="<%= request.getContextPath() %>/memberRegForm.jsp">회원가입</a></li>
 	
-
 	<c:choose>
 		<c:when test="${sessionScope.userId == null}">
 			<li><a href="<%= request.getContextPath() %>/loginForm.jsp">로그인</a></li>
